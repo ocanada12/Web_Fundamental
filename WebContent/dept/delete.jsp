@@ -1,11 +1,11 @@
-<%@page import="kr.co.acorn.dto.DeptDto"%>
-<%@page import="kr.co.acorn.dao.DeptDao"%>
+<%@page import="kr.co.acorn.dto.EmpDto"%>
+<%@page import="kr.co.acorn.dao.EmpDao"%>
 <%@ page pageEncoding="utf-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	int no = Integer.parseInt(request.getParameter("no"));
 	String tempPage = request.getParameter("page");
-	DeptDao dao = DeptDao.getInstance();
+	EmpDao dao = EmpDao.getInstance();
 	boolean isSuccess = dao.delete(no);
 	if (isSuccess) {
 %>

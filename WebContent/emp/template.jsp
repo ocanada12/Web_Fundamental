@@ -1,23 +1,24 @@
-<%@ page pageEncoding = "utf-8" %>
-<%@ include file = "../inc/header.jsp" %>
-
-  <!--breadcum start-->
+<%@ page pageEncoding="utf-8" %>
+<%@ include file="../inc/header.jsp" %>  
+  <!-- breadcrumb start-->
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Library</li>
     </ol>
   </nav>
-  <!--breadcum end-->
-  <!--main start-->
+  <!-- breadcrumb end-->
+
+  <!-- main start-->
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
- 
- 
+        
+		
+        
       </div>
     </div>
   </div>
-  <!--main end-->
+  <!-- main end-->
+  <%@ include file="../inc/footer.jsp" %> 
   
-  <%@ include file = "../inc/footer.jsp" %>
