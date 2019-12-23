@@ -1,6 +1,6 @@
-<%@ page import="kr.co.acorn.dto.EmpDto"%>
+<%@ page import="kr.co.acorn.dto.MemberDto"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="kr.co.acorn.dao.EmpDao"%>
+<%@ page import="kr.co.acorn.dao.MemberDao"%>
 <%@ page pageEncoding="utf-8"%>
 <%@ include file="../inc/header.jsp"%>
 <%
@@ -24,7 +24,7 @@
 		cPage = 1;
 	}
 	//An = a1 + (n-1)*d
-	EmpDao dao = EmpDao.getInstance();//얘바꾸기	
+	MemberDao dao = MemberDao.getInstance();//얘바꾸기	
 	totalRows = dao.getTotalRows();
 	totalPage = totalRows % len == 0 ? totalRows / len : totalRows / len + 1;
 	if (totalPage == 0) {
@@ -38,6 +38,7 @@
 
 	start = (cPage - 1) * len;
 	pageNum = totalRows + (cPage - 1) * (-len);
+	ArrayList<MemberDto> list = dao.select(start, len);//
 
 	/*
 		totalRows = 132;
@@ -104,19 +105,32 @@
 						</tr>
 					</thead>
 					<tbody>
-						
+						<%
+							if (list.size() != 0) {
+						%>
+						<%
+							for (MemberDto dto : list) {
+						%>
 						<tr>
 							<td><%=pageNum--%></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>							
+							<td><a href="view.jsp?page=<%=cPage%>&no=<%=dto.getName()%>"><%=dto.getName()%></a></td>
+							<td><%=dto.getEmail()%></td>
+							<td><%=dto.getPhone()%></td>
+							<td><%=dto.getRegdate()%></td>
 						</tr>
-						
+						<%
+							}
+						%>
+						<%
+							} else {
+						%>
 						<tr>
 							<td colspan="6">데이터가 존재하지 않습니다.</td>
 						</tr>
-						
+						<%
+							}
+						%>
+
 					</tbody>
 				</table>
 			</div>

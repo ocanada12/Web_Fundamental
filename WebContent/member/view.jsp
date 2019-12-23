@@ -1,5 +1,5 @@
-<%@page import="kr.co.acorn.dto.EmpDto"%>
-<%@page import="kr.co.acorn.dao.EmpDao"%>
+<%@page import="kr.co.acorn.dto.MemberDto"%>
+<%@page import="kr.co.acorn.dao.MemberDao"%>
 <%@ page pageEncoding="utf-8" %>
 <%@ include file="../inc/header.jsp" %>  
 <%
@@ -26,19 +26,18 @@
 		return;
 	}
 	
-	EmpDao dao = EmpDao.getInstance();
-	EmpDto dto = dao.select(no);
+	MemberDao dao = MemberDao.getInstance();
+	MemberDto dto = dao.select(no);
 	if(dto == null){
 		response.sendRedirect("list.jsp?page="+cPage);
 		return;
 	}
 	String name = dto.getName();
-	String job = dto.getJob();
-	int mgr = dto.getMgr();
-	String hiredate = dto.getHiredate();
-	int sal = dto.getSal();
-	int comm = dto.getComm();
-	int deptNo = dto.getDeptDto().getNo();
+	String email = dto.getEmail();
+	String password = dto.getPassword();
+	String phone = dto.getPhone();
+	String regdate = dto.getRegdate();
+
 %>
  <!-- breadcrumb start-->
 <nav aria-label="breadcrumb">

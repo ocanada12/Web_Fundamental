@@ -1,23 +1,19 @@
 <%@page import="kr.co.acorn.dto.DeptDto"%>
-<%@page import="kr.co.acorn.dao.EmpDao"%>
-<%@page import="kr.co.acorn.dto.EmpDto"%>
+<%@page import="kr.co.acorn.dao.MemberDao"%>
+<%@page import="kr.co.acorn.dto.MemberDto"%>
 <%@ page pageEncoding="utf-8" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	int no = 0;
+	String email = request.getParameter("email");
 	String name = request.getParameter("name");
-	String job = request.getParameter("job");
-	int mgr = Integer.parseInt(request.getParameter("mgr"));
-	int sal = Integer.parseInt(request.getParameter("sal"));
-	int comm = Integer.parseInt(request.getParameter("comm"));
-	int deptNo = Integer.parseInt(request.getParameter("deptNo"));
+	String password = request.getParameter("password");
+	String phone = request.getParameter("phone");
+	String regdate = request.getParameter("regdate");
 	
-	DeptDto deptDto = new DeptDto();
-	deptDto.setNo(deptNo);
-	EmpDao dao = EmpDao.getInstance();
-	no = dao.getMaxNextNo();
 	
-	EmpDto dto = new EmpDto(no,name,job,mgr,null,sal,comm,deptDto);
+	MemberDao dao = MemberDao.getInstance();
+
+	MemberDto dto = new MemberDto(email,name,password,phone,regdate);
 	
 	boolean isSuccess = dao.insert(dto);
 	

@@ -7,6 +7,6 @@
 EmpDao dao = EmpDao.getInstance();
 int start = Integer.parseInt(request.getParameter("start"));
 int length = Integer.parseInt(request.getParameter("length"));
-out.print(dao.selectjson(start,	 length));
+out.print(dao.selectjson(start,length));
 
 %>

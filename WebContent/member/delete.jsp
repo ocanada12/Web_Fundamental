@@ -1,13 +1,13 @@
-<%@page import="kr.co.acorn.dto.EmpDto"%>
-<%@page import="kr.co.acorn.dao.EmpDao"%>
+<%@page import="kr.co.acorn.dto.MemberDto"%>
+<%@page import="kr.co.acorn.dao.MemberDao"%>
 <%@ page pageEncoding="utf-8" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	int no = Integer.parseInt(request.getParameter("no"));
+	String name = request.getParameter("name");
 	String tempPage = request.getParameter("page");
 	
-	EmpDao dao = EmpDao.getInstance();
-	boolean isSuccess = dao.delete(no);
+	MemberDao dao = MemberDao.getInstance();
+	boolean isSuccess = dao.delete(name);
 	if(isSuccess){
 %>
 	<script>
