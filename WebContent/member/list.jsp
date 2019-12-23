@@ -38,7 +38,6 @@
 
 	start = (cPage - 1) * len;
 	pageNum = totalRows + (cPage - 1) * (-len);
-	ArrayList<EmpDto> list = dao.select(start, len);//
 
 	/*
 		totalRows = 132;
@@ -73,7 +72,7 @@
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/index.jsp">Home</a></li>
-		<li class="breadcrumb-item active" aria-current="page">사원관리</li>
+		<li class="breadcrumb-item active" aria-current="page">회원관리</li>
 	</ol>
 </nav>
 <!-- breadcrumb end-->
@@ -84,60 +83,40 @@
 		<div class="col-lg-12">
 
 			<h3>
-				사원리스트(<%=totalRows%>)
+				회원리스트(<%=totalRows%>)
 			</h3>
 			<div class="table-responsive-lg">
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
 						<col width="15%" />
-						<col width="15%" />
-						<col width="15%" />
-						<col width="15%" />
-						<col width="15%" />
-						<col width="15%" />
+						<col width="25%" />
+						<col width="25%" />
+						<col width="25%" />
 					</colgroup>
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">사원번호</th>
 							<th scope="col">이름</th>
-							<th scope="col">직책</th>
-							<th scope="col">사수</th>
-							<th scope="col">부서이름</th>
-							<th scope="col">입사일</th>
+							<th scope="col">이메일</th>
+							<th scope="col">휴대폰번호</th>
+							<th scope="col">등록일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%
-							if (list.size() != 0) {
-						%>
-						<%
-							for (EmpDto dto : list) {
-						%>
+						
 						<tr>
 							<td><%=pageNum--%></td>
-							<td><a href="view.jsp?page=<%=cPage%>&no=<%=dto.getNo()%>"><%=dto.getNo()%></a></td>
-							<td><%=dto.getName()%></td>
-							<td><%=dto.getJob()%></td>
-							<td><%=dto.getMgr()%></td>
-							<td><a
-								href="../dept/view.jsp?page=<%=cPage%>&no=<%=dto.getDeptDto().getNo()%>"><%=dto.getDeptDto().getName()%></a></td>
-							<td><%=dto.getHiredate()%></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>							
 						</tr>
-						<%
-							}
-						%>
-						<%
-							} else {
-						%>
+						
 						<tr>
 							<td colspan="6">데이터가 존재하지 않습니다.</td>
 						</tr>
-						<%
-							}
-						%>
-
+						
 					</tbody>
 				</table>
 			</div>

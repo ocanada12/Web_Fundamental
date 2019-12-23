@@ -1,5 +1,6 @@
-<%@page import="org.jsoup.nodes.Element"%>
+
 <%@page import="org.jsoup.select.Elements"%>
+<%@page import="org.jsoup.nodes.Element"%>
 <%@page import="org.jsoup.Jsoup"%>
 <%@page import="java.io.IOException"%>
 <%@page import="org.jsoup.nodes.Document"%>
@@ -22,30 +23,21 @@
 	<div class="row">
 		<div class="col-lg-12">
 
-			<%
+			<h3>Crawling</h3>
+
+		<%
 		int year = 2019;
 		int month = 12;
 		int day = 31;
-		String startdate = null;
-		String enddate = null;
-		int syear = 0;
-		int smonth = 0;
-		int sday = 0;
-		int eyear = 0;
-		int emonth = 0;
-		int eday = 0;
+		int syear = 2019;
+		int smonth = 12;
+		int sday = 2;
+		int eyear = 2019;
+		int emonth = 12;
+		int eday = 10;
 				
-		simpledataformat s = new SimpleDataFormat("yyyymmdd",syear,smonth,sdate);
-		simpledataformat e = new SimpleDataFormat("yyyymmdd",eyear,emonth,edate);
-		startdate = s ;
-		enddate = e;
 		
 		%>
-
-
-
-			<h3>Crawling</h3>
-
 
 			<form name="f" method="post" action="list.jsp">
 				<div class="form-group row">
@@ -68,7 +60,7 @@
 						<select id="startYear" name="startYear" class="form-control">
 							<option selected>Year...</option>
 							<%for(int i= 2010;i<=year;i++){ %>
-							<option value="<%=i%>" <%if(syear = i){%> selected <%}%>><%=i%></option>
+							<option value="<%=i%>" ><%=i%></option>
 							<%} %>
 						</select>
 					</div>
@@ -78,6 +70,7 @@
 							<option selected>Month...</option>
 							<%for(int i= 1;i<=month;i++){ %>
 							<option value="<%=i%>"><%=i%></option>
+							<%} %>
 						</select>
 					</div>
 
@@ -86,6 +79,7 @@
 							<option selected>Day...</option>
 							<%for(int i= 1;i<=day;i++){ %>
 							<option value="<%=i%>"><%=i%></option>
+							<%} %>
 						</select>
 					</div>
 				</div>
@@ -98,6 +92,7 @@
 							<option selected>Year...</option>
 							<%for(int i= 2010;i<=year;i++){ %>
 							<option value="<%=i%>"><%=i%></option>
+							<%} %>
 						</select>
 					</div>
 
@@ -106,6 +101,7 @@
 							<option selected>Month...</option>
 							<%for(int i= 1;i<=month;i++){ %>
 							<option value="<%=i%>"><%=i%></option>
+							<%} %>
 						</select>
 					</div>
 
@@ -114,6 +110,7 @@
 							<option selected>Day...</option>
 							<%for(int i= 1;i<=day;i++){ %>
 							<option value="<%=i%>"><%=i%></option>
+							<%} %>
 						</select>
 					</div>
 				</div>
@@ -146,21 +143,30 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%
+								<%
 			
 				FileWriter fw = null;
 				BufferedWriter bw = null;
 				PrintWriter pw = null;
-				
+			
+		
+				StringBuffer startdate = new StringBuffer();
+				startdate.append(syear);
+				startdate.append(String.format("%02d", smonth));
+				startdate.append(String.format("%02d", sday));
+
+				StringBuffer enddate = new StringBuffer();
+				enddate.append(eyear);
+				enddate.append(String.format("%02d", emonth));
+				enddate.append(String.format("%02d", eday));
 				
 				StringBuffer sql = new StringBuffer();
 				sql.append("https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=");
 				sql.append(startdate);
-				sql.append("&end=");
-				sql.append(enddate);
-				String url = sql;
-								
+				sql.append("&end="+enddate);				
 				
+				String url = sql.toString();
+		
 				Document doc = null;
 				
 
@@ -170,7 +176,6 @@
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 				Elements elements = doc.select(".cmc-table__table-wrapper-outer table tbody tr");
 			    %>
 						<%for(int i = 0; i < elements.size(); i++){ %>
@@ -193,7 +198,8 @@
 							<td><%=volume %></td>
 							<td><%=cap %></td>
 						</tr>
-						<%}%>
+				<%} %>	
+	
 					</tbody>
 				</table>
 			</div>

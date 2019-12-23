@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>step04_ajax_jquery_jsonp.html</title>
+<script src="../js/jquery-3.4.1.js"></script>
+<script>
+	$(function() {
+		$("#loadAjax").click(function() {
+			$.ajax({
+				type : 'GET',
+				url : 'naver_proxy.jsp',
+				dataType : 'json', //xml, html
+				error : function() {
+					alert('Json Load Error');
+				},
+				success : function(obj) {
+					console.log(obj);
+					console.log(typeof obj);
+					$("#han").html(JSON.stringify(obj));
+				} 
+			});
+		});
+	});
+</script>
+
+</head>
+<body>
+	<div id="han"></div>
+	<button id="loadAjax">Ajax 불러오기</button>
+</body>
+</html>
